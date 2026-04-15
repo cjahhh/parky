@@ -20,4 +20,6 @@ RUN chown -R www-data:www-data /var/www/html
 
 EXPOSE 80
 
+RUN echo "clear_env = no" >> /usr/local/etc/php-fpm.d/www.conf
+
 CMD bash -c "/usr/local/sbin/php-fpm -D && sed -i \"s/PORT_PLACEHOLDER/$PORT/g\" /etc/nginx/sites-enabled/default && nginx -g 'daemon off;'"
