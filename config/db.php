@@ -4,11 +4,11 @@ define('APP_TIMEZONE', 'Asia/Manila');
 date_default_timezone_set(APP_TIMEZONE);
 
 // ✅ Use getenv() instead of $_ENV (more reliable in Railway)
-$host = getenv('MYSQLHOST');
-$db   = getenv('MYSQLDATABASE');
-$user = getenv('MYSQLUSER');
-$pass = getenv('MYSQLPASSWORD');
-$port = getenv('MYSQLPORT');
+$host = getenv('mysql.railway.internal');
+$db   = getenv('railway');
+$user = getenv('root');
+$pass = getenv('skuiyvrcWsydpCjPKPlXAMWgXOQKfUlr');
+$port = getenv('3306');
 
 // 🚨 fallback (prevents crash)
 if (!$host || !$db || !$user) {
