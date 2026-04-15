@@ -12,10 +12,10 @@ define('APP_TIMEZONE', 'Asia/Manila');
 date_default_timezone_set(APP_TIMEZONE);
 
 
-define('DB_HOST', 'sql300.infinityfree.com');
-define('DB_NAME', 'if0_41662790_parky_db');
-define('DB_USER', 'if0_41662790');   // ← change to your MySQL username
-define('DB_PASS', 'k6F9namYWC8C34');       // ← change to your MySQL password
+define('DB_HOST', 'mysql.railway.internal');
+define('DB_NAME', 'railway');
+define('DB_USER', 'root');   // ← change to your MySQL username
+define('DB_PASS', 'skuiyvrcWsydpCjPKPlXAMWgXOQKfUlr');       // ← change to your MySQL password
 define('DB_CHARSET', 'utf8mb4');
 
 
