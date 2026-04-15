@@ -1,25 +1,19 @@
 FROM php:8.2-fpm
 
-# Install nginx
 RUN apt-get update && apt-get install -y nginx && rm -rf /var/lib/apt/lists/*
 
-# Install PHP extensions
 RUN docker-php-ext-install pdo pdo_mysql
 
-# Find where php-fpm actually is
-RUN find / -name "php-fpm*" 2>/dev/null
+RUN echo "clear_env = no" >> /usr/local/etc/php-fpm.d/www.conf
 
-# Nginx config
 COPY nginx.conf /etc/nginx/sites-available/default
+COPY start.sh /start.sh
+RUN chmod +x /start.sh
 
-# Copy app files
 COPY . /var/www/html/
 
-# Fix permissions
 RUN chown -R www-data:www-data /var/www/html
 
 EXPOSE 80
 
-RUN echo "clear_env = no" >> /usr/local/etc/php-fpm.d/www.conf
-
-CMD bash -c "/usr/local/sbin/php-fpm -D && sed -i \"s/PORT_PLACEHOLDER/$PORT/g\" /etc/nginx/sites-enabled/default && nginx -g 'daemon off;'"
+CMD ["/start.sh"]
