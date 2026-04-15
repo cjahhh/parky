@@ -1,0 +1,12 @@
+fastapi
+uvicorn
+numpy
+opencv-python
+pydantic
+easyocr
+inference
+requests
+python-dotenv
+
+
+
