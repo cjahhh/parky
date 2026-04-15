@@ -2,11 +2,11 @@
 define('APP_TIMEZONE', 'Asia/Manila');
 date_default_timezone_set(APP_TIMEZONE);
 
-$host = getenv('mysql.railway.internal');
-$db   = getenv('railway');
-$user = getenv('root');
-$pass = getenv('skuiyvrcWsydpCjPKPlXAMWgXOQKfUlr');
-$port = getenv('3306');
+$host = getenv('MYSQLHOST') ?: 'mysql.railway.internal';
+$db   = getenv('MYSQLDATABASE') ?: 'railway';
+$user = getenv('MYSQLUSER') ?: 'root';
+$pass = getenv('MYSQLPASSWORD') ?: 'skuiyvrcWsydpCjPKPlXAMWgXOQKfUlr';
+$port = getenv('MYSQLPORT') ?: '3306';
 
 $dsn = "mysql:host=$host;port=$port;dbname=$db;charset=utf8mb4";
 $options = [
