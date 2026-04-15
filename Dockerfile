@@ -18,4 +18,4 @@ RUN chown -R www-data:www-data /var/www/html
 EXPOSE 80
 
 # Startup script
-CMD bash -c "php-fpm -D && nginx -g 'daemon off;'"
+CMD bash -c "php-fpm8.2 -D && nginx -g 'daemon off;'"
