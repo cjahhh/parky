@@ -1,26 +1,11 @@
 <?php
-define('APP_TIMEZONE', 'Asia/Manila');
-date_default_timezone_set(APP_TIMEZONE);
+$host = getenv('MYSQLHOST');
+$db   = getenv('MYSQLDATABASE');
+$user = getenv('MYSQLUSER');
+$pass = getenv('MYSQLPASSWORD');
+$port = getenv('MYSQLPORT');
 
-$host = getenv('mysql.railway.internal');
-$db   = getenv('railway');
-$user = getenv('root');
-$pass = getenv('skuiyvrcWsydpCjPKPlXAMWgXOQKfUlr');
-$port = getenv('3306');
-
-if (!$host || !$db || !$user) {
-    die("Environment variables not loaded");
-}
-
-$dsn = "mysql:host=$host;port=$port;dbname=$db;charset=utf8mb4";
-$options = [
-    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-    PDO::ATTR_EMULATE_PREPARES => false,
-];
-
-try {
-    $pdo = new PDO($dsn, $user, $pass, $options);
-} catch (PDOException $e) {
-    die("DB ERROR: " . $e->getMessage());
-}
+echo "HOST: $host <br>";
+echo "DB: $db <br>";
+echo "USER: $user <br>";
+echo "PORT: $port <br>";
