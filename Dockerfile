@@ -20,4 +20,4 @@ RUN chown -R www-data:www-data /var/www/html
 
 EXPOSE 80
 
-CMD bash -c "/usr/local/sbin/php-fpm -D && sed -i \"s/PORT_PLACEHOLDER/$PORT/g\" /etc/nginx/sites-available/default && nginx -g 'daemon off;'"
+CMD bash -c "/usr/local/sbin/php-fpm -D && sed -i \"s/PORT_PLACEHOLDER/$PORT/g\" /etc/nginx/sites-enabled/default && nginx -g 'daemon off;'"
