@@ -2,15 +2,11 @@
 define('APP_TIMEZONE', 'Asia/Manila');
 date_default_timezone_set(APP_TIMEZONE);
 
-$host = getenv('MYSQLHOST');
-$db   = getenv('MYSQLDATABASE');
-$user = getenv('MYSQLUSER');
-$pass = getenv('MYSQLPASSWORD');
-$port = getenv('MYSQLPORT');
-
-if (!$host || !$db || !$user) {
-    die("Environment variables not loaded");
-}
+$host = getenv('mysql.railway.internal');
+$db   = getenv('railway');
+$user = getenv('root');
+$pass = getenv('skuiyvrcWsydpCjPKPlXAMWgXOQKfUlr');
+$port = getenv('3306');
 
 $dsn = "mysql:host=$host;port=$port;dbname=$db;charset=utf8mb4";
 $options = [
@@ -21,7 +17,6 @@ $options = [
 
 try {
     $pdo = new PDO($dsn, $user, $pass, $options);
-    echo "DB Connected successfully!";
 } catch (PDOException $e) {
     die("DB ERROR: " . $e->getMessage());
 }
