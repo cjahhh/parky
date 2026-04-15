@@ -11,13 +11,15 @@
 define('APP_TIMEZONE', 'Asia/Manila');
 date_default_timezone_set(APP_TIMEZONE);
 
-
-define('DB_HOST', 'mysql.railway.internal');
-define('DB_NAME', 'railway');
-define('DB_USER', 'root');   // ← change to your MySQL username
-define('DB_PASS', 'skuiyvrcWsydpCjPKPlXAMWgXOQKfUlr');       // ← change to your MySQL password
+$host = $_ENV['mysql.railway.internal'];
+$db   = $_ENV['railway'];
+$user = $_ENV['root'];
+$pass = $_ENV['skuiyvrcWsydpCjPKPlXAMWgXOQKfUlr'];
+$port = $_ENV['3306'];
 define('DB_CHARSET', 'utf8mb4');
 
+
+$dsn = "mysql:host=$host;port=$port;dbname=$db;charset=utf8mb4";
 
 $dsn = "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=" . DB_CHARSET;
 
