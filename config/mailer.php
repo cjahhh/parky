@@ -12,7 +12,7 @@ function app_public_base_url(): string {
 }
 
 function send_verification_email(string $toEmail, string $displayName, string $verifyUrl): bool {
-    $apiKey = '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';
+    $apiKey = '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';
     $safeName = htmlspecialchars($displayName, ENT_QUOTES, 'UTF-8');
     $safeUrl  = htmlspecialchars($verifyUrl,   ENT_QUOTES, 'UTF-8');
 
