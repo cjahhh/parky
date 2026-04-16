@@ -12,17 +12,18 @@ function createMailer(): PHPMailer {
     $mail->isSMTP();
     $mail->Host       = 'smtp-relay.brevo.com';
     $mail->SMTPAuth   = true;
-    $mail->Username   = 'a82655001@smtp-brevo.com';    // ← brevo sender
-    $mail->Password   = 'xsmtpsib-d2954e97674dc3b449af90494d32cc1be274e7229b862acfaa80741b333883e4-o3YLCMlYlaVGeckv';  // brevo
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-    $mail->Port       = 587;
-    $mail->SMTPOptions = array(
-    'ssl' => array(
-        'verify_peer'       => false,
-        'verify_peer_name'  => false,
-        'allow_self_signed' => true
-    )
-);
+    $mail->Username   = 'a82655001@smtp-brevo.com';
+    $mail->Password   = 'xsmtpsib-d2954e97674dc3b449af90494d32cc1be274e7229b862acfaa80741b333883e4-o3YLCMlYlaVGeckv';
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+    $mail->Port       = 465;
+    $mail->Timeout    = 15;
+    $mail->SMTPOptions = [
+        'ssl' => [
+            'verify_peer'       => false,
+            'verify_peer_name'  => false,
+            'allow_self_signed' => true
+        ]
+    ];
     $mail->setFrom('cascayok@gmail.com', 'Parky');
     $mail->isHTML(true);
     return $mail;
