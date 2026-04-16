@@ -74,7 +74,7 @@ function send_verification_email(string $toEmail, string $displayName, string $v
 </html>';
 
     $payload = json_encode([
-        'sender'      => ['name' => 'Parky', 'email' => 'cascayok@gmail.com'],
+        'sender'      => ['name' => 'Parky', 'email' => 'cj1009garcia@gmail.com'],
         'to'          => [['email' => $toEmail, 'name' => $displayName]],
         'subject'     => 'Verify your Parky account',
         'htmlContent' => $htmlBody,
