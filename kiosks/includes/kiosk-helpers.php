@@ -33,8 +33,8 @@ function checkReservationByPlate(PDO $pdo, string $plate): ?array {
         LEFT JOIN users u     ON r.user_id = u.id
         WHERE UPPER(r.plate_number) = ?
           AND r.status IN ('pending', 'confirmed')
-          AND r.expires_at > NOW()
-          AND r.arrival_time <= DATE_ADD(NOW(), INTERVAL 2 HOUR)
+          AND r.arrival_time BETWEEN DATE_SUB(NOW(), INTERVAL 6 HOUR)
+                                  AND DATE_ADD(NOW(), INTERVAL 2 HOUR)
         ORDER BY r.arrival_time ASC
         LIMIT 1
     ");
