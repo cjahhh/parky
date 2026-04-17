@@ -24,6 +24,8 @@ function generateReceiptNumber(): string {
 //     (expires_at) acts as the hard cut-off on the other end.
 // ─────────────────────────────────────────────────────────────────────────────
 function checkReservationByPlate(PDO $pdo, string $plate): ?array {
+    $cleanPlate = strtoupper(str_replace(['-', ' '], '', $plate));
+
     $stmt = $pdo->prepare("
         SELECT r.*, ps.slot_code, ps.floor,
                TRIM(CONCAT(COALESCE(u.first_name, ''), ' ', COALESCE(u.last_name, ''))) AS user_name,
@@ -31,14 +33,13 @@ function checkReservationByPlate(PDO $pdo, string $plate): ?array {
         FROM reservations r
         JOIN parking_slots ps ON r.slot_id = ps.id
         LEFT JOIN users u     ON r.user_id = u.id
-        WHERE UPPER(r.plate_number) = ?
+        WHERE REPLACE(REPLACE(UPPER(r.plate_number), '-', ''), ' ', '') = ?
           AND r.status IN ('pending', 'confirmed')
-          AND r.arrival_time BETWEEN DATE_SUB(NOW(), INTERVAL 6 HOUR)
-                                  AND DATE_ADD(NOW(), INTERVAL 2 HOUR)
+          AND DATE(r.arrival_time) = CURDATE()
         ORDER BY r.arrival_time ASC
         LIMIT 1
     ");
-    $stmt->execute([strtoupper($plate)]);
+    $stmt->execute([$cleanPlate]);
     return $stmt->fetch(PDO::FETCH_ASSOC) ?: null;
 }
 
