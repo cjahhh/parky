@@ -1,12 +1,10 @@
 fastapi
 uvicorn
 numpy
-opencv-python
+opencv-python-headless
 pydantic
 easyocr
 inference
 requests
 python-dotenv
-
-
-
+roboflow
