@@ -20,4 +20,4 @@ ENV PARKY_TF_SERVICE_PORT=8765
 
 EXPOSE 8765
 
-CMD ["python", "app.py"]
+CMD ["sh", "-c", "uvicorn app:app --host 0.0.0.0 --port ${PORT:-8765}"]
