@@ -104,7 +104,9 @@ function countSlotsByStatus(PDO $pdo): array {
 
 
 function getTfServiceUrl(): string {
-    $url = getenv('PARKY_TF_SERVICE_URL');
+    $url = getenv('PARKY_TF_SERVICE_URL')
+        ?: ($_ENV['PARKY_TF_SERVICE_URL'] ?? '')
+        ?: ($_SERVER['PARKY_TF_SERVICE_URL'] ?? '');
     return (!empty($url)) ? $url : 'http://127.0.0.1:8765/detect';
 }
 
