@@ -3,8 +3,8 @@ uvicorn==0.29.0
 numpy==1.26.4
 opencv-python-headless==4.9.0.80
 pydantic==2.6.4
-easyocr==1.7.1
-inference==0.9.19
 requests==2.31.0
 python-dotenv==1.0.1
 roboflow==1.1.36
+Pillow==10.3.0
+pytesseract==0.3.10
