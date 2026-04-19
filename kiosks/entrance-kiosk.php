@@ -4,7 +4,7 @@ require_once __DIR__ . '/includes/kiosk-auth.php';
 require_once __DIR__ . '/includes/kiosk-helpers.php';
 
 /** Step 6 (Done): QR image in site /images/ — set only the filename when deployed (e.g. 'parky-qr.png'). Empty = dashed placeholder. */
-$done_step_qr_filename = '';
+$done_step_qr_filename = 'parky/images/parky-qr.png';
 
 if (isset($_GET['action'])) {
     header('Content-Type: application/json');
