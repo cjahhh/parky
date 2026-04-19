@@ -182,12 +182,10 @@ def detect(req: DetectRequest) -> DetectResponse:
 
 
 
-
 if __name__ == "__main__":
     import uvicorn
-    host = os.getenv("PARKY_TF_SERVICE_HOST", "127.0.0.1")
-    port = int(os.getenv("PARKY_TF_SERVICE_PORT", "8765"))
+    host = os.getenv("PARKY_TF_SERVICE_HOST", "0.0.0.0")
+    port = int(os.getenv("PORT", os.getenv("PARKY_TF_SERVICE_PORT", "8765")))
     print(f"[Parky] Starting detector service on http://{host}:{port}")
     print(f"[Parky] Roboflow API key: {'SET ✓' if os.getenv('ROBOFLOW_API_KEY') else 'MISSING ⚠️'}")
     uvicorn.run("app:app", host=host, port=port, reload=False)
-
