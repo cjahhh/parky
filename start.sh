@@ -6,13 +6,18 @@ export MYSQLPASSWORD=$(echo $MYSQLPASSWORD)
 export MYSQLPORT=$(echo $MYSQLPORT)
 export PARKY_TF_SERVICE_URL=$(echo $PARKY_TF_SERVICE_URL)
 
-# Pass env vars to PHP-FPM
-echo "env[PARKY_TF_SERVICE_URL] = $(echo $PARKY_TF_SERVICE_URL)" >> /usr/local/etc/php-fpm.d/www.conf
-echo "env[MYSQLHOST] = $(echo $MYSQLHOST)" >> /usr/local/etc/php-fpm.d/www.conf
-echo "env[MYSQLDATABASE] = $(echo $MYSQLDATABASE)" >> /usr/local/etc/php-fpm.d/www.conf
-echo "env[MYSQLUSER] = $(echo $MYSQLUSER)" >> /usr/local/etc/php-fpm.d/www.conf
-echo "env[MYSQLPASSWORD] = $(echo $MYSQLPASSWORD)" >> /usr/local/etc/php-fpm.d/www.conf
-echo "env[MYSQLPORT] = $(echo $MYSQLPORT)" >> /usr/local/etc/php-fpm.d/www.conf
+# Pass env vars to PHP-FPM - only write if value is not empty
+if [ -n "$PARKY_TF_SERVICE_URL" ]; then
+    echo "env[PARKY_TF_SERVICE_URL] = $PARKY_TF_SERVICE_URL" >> /usr/local/etc/php-fpm.d/www.conf
+else
+    echo "env[PARKY_TF_SERVICE_URL] = https://detector-production-up.railway.app/detect" >> /usr/local/etc/php-fpm.d/www.conf
+fi
+
+echo "env[MYSQLHOST] = $MYSQLHOST" >> /usr/local/etc/php-fpm.d/www.conf
+echo "env[MYSQLDATABASE] = $MYSQLDATABASE" >> /usr/local/etc/php-fpm.d/www.conf
+echo "env[MYSQLUSER] = $MYSQLUSER" >> /usr/local/etc/php-fpm.d/www.conf
+echo "env[MYSQLPASSWORD] = $MYSQLPASSWORD" >> /usr/local/etc/php-fpm.d/www.conf
+echo "env[MYSQLPORT] = $MYSQLPORT" >> /usr/local/etc/php-fpm.d/www.conf
 
 /usr/local/sbin/php-fpm -D
 sed -i "s/PORT_PLACEHOLDER/${PORT}/g" /etc/nginx/sites-enabled/default
